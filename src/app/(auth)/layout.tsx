@@ -16,6 +16,7 @@ export default function LoginLayout({
           className="max-w-md w-full object-contain"
           width={558}
           height={100}
+          loading="eager"
         />
       </div>
 

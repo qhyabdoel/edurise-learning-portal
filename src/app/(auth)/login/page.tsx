@@ -1,14 +1,27 @@
 'use client'
 
 import Button from "@/components/ui/Button";
-import { Eye, EyeOff, Mail } from "lucide-react";
+import { Loader, Mail } from "lucide-react";
+import Input from "@/components/ui/Input";
 import { useState } from "react";
+import { useForm } from "react-hook-form"
 
 const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm()
+
+  const onSubmit = async (data: any) => {
+    // setLoading(true)
+    // const res = await loginApi(data);
+    // if (res.ok) {
+    //   setCookie('auth-token', res.token, { maxAge: 60 * 60 * 24 }); // 1 day
+    //   setAuth(res.user, res.token);
+    //   router.push('/dashboard');
+    // }
+  };
 
   return (
-    <div className="w-full md:w-3/5 flex flex-col justify-center px-8 sm:px-16 lg:px-32 py-12">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-3/5 flex flex-col justify-center px-8 sm:px-16 lg:px-32 py-12">
 
       {/* Branding */}
       <div className="mb-10">
@@ -24,35 +37,13 @@ const LoginPage = () => {
         {/* Email Input */}
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-          <div className="relative group">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-              <Mail size={20} />
-            </div>
-            <input
-              type="email"
-              placeholder="user@gmail.com"
-              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all text-gray-500"
-            />
-          </div>
+          <Input icon={<Mail size={20} />} placeholder="user@gmail.com" />
         </div>
 
         {/* Password Input */}
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-          <div className="relative group">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="********"
-              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
+          <Input isPassword placeholder="********" />
         </div>
 
         {/* Actions */}
@@ -68,9 +59,13 @@ const LoginPage = () => {
         </div>
 
         {/* Submit */}
-        <Button>Masuk</Button>
+        <Button disabled>
+          <span className="flex items-center justify-center gap-2">
+            <Loader size={20} /> Harap Tunggu ...
+          </span>
+        </Button>
       </form>
-    </div>
+    </form>
   );
 };
 
