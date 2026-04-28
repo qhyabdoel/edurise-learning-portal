@@ -1,38 +1,77 @@
-import Button from "@/components/ui/Button";
+'use client'
 
-export default function LoginPage() {
+import Button from "@/components/ui/Button";
+import { Eye, EyeOff, Mail } from "lucide-react";
+import { useState } from "react";
+
+const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-6">Login</h1>
-      <form className="bg-white p-6 rounded shadow-md w-full max-w-sm">
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
+    <div className="w-full md:w-3/5 flex flex-col justify-center px-8 sm:px-16 lg:px-32 py-12">
+
+      {/* Branding */}
+      <div className="mb-10">
+        <h1 className="text-4xl font-extrabold text-blue-500 tracking-tight">EduRise</h1>
+        <p className="text-gray-500 mt-2 font-medium">
+          Tingkatkan kemampuanmu, raih masa depan lebih baik
+        </p>
+      </div>
+
+      <h2 className="text-2xl font-bold text-slate-800 mb-8">Masuk</h2>
+
+      <form className="space-y-5">
+        {/* Email Input */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+          <div className="relative group">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+              <Mail size={20} />
+            </div>
+            <input
+              type="email"
+              placeholder="user@gmail.com"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all text-gray-500"
+            />
+          </div>
         </div>
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 mb-2">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
+
+        {/* Password Input */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+          <div className="relative group">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="********"
+              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
         </div>
-        <Button>
-          Masuk
-        </Button>
+
+        {/* Actions */}
+        <div>
+          <label className="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+              defaultChecked
+            />
+            <span className="ml-2 text-sm text-gray-600">Ingat saya</span>
+          </label>
+        </div>
+
+        {/* Submit */}
+        <Button>Masuk</Button>
       </form>
     </div>
   );
-}
+};
+
+export default LoginPage;

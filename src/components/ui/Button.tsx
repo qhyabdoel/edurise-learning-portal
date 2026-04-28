@@ -11,7 +11,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant = 'primary', size = 'md', isLoading, children, ...props }, ref) => {
 
         // Base styles consistent with Figma (rounded-lg, font-medium)
-        const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none disabled:opacity-50 disabled:pointer-events-none";
+        const baseStyles = "w-full rounded-lg font-medium transition-all focus:outline-none disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
 
         const variants = {
             primary: "bg-[#0052CC] text-white hover:bg-[#0041a3] shadow-sm", // Matches the EduRise blue
