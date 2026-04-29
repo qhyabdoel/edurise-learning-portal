@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   // 2. Mock Validation
   if (email === EMAIL_ADDRESS && password === PASSWORD) {
     const response = NextResponse.json({
-      user: {
+      data: {
         name: 'Kiki Abdulloh',
         email: EMAIL_ADDRESS,
         summary: 'An enthusiast developer with ability to design with various tool'

@@ -8,10 +8,11 @@ import { useState } from "react";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode
   isPassword?: boolean
+  isError?: boolean
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ icon, isPassword, ...props }, ref) => {
+  ({ icon, isPassword, isError, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(false)
 
     const baseStyles = cn(
@@ -29,7 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
           type={isPassword ? (showPassword ? 'text' : 'password') : (props.type ?? 'text')}
-          className={cn(baseStyles, icon ? "pl-10 pr-4" : "px-4")}
+          className={cn(baseStyles, isError && "border-red-500 focus:border-red-500", icon ? "pl-10 pr-4" : "px-4")}
         />
         {isPassword && (
           <button
