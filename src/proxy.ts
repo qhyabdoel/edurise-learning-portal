@@ -11,7 +11,7 @@ export function proxy(request: NextRequest) {
   }
 
   // if token and on login page, redirect to dashboard
-  if (token && pathname.pathname === "/login") {
+  if (token && ["/", "/login"].includes(pathname.pathname)) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 

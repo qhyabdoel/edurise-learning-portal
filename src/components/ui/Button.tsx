@@ -20,7 +20,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     "w-full rounded-lg font-medium transition-all focus:outline-none disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
 
   const variants = {
-    primary: "bg-[#0052CC] text-white hover:bg-[#0041a3] shadow-sm",
+    primary: "bg-blue-500 text-white hover:bg-[#0041a3] shadow-sm",
     secondary: "bg-[#E6F0FF] text-[#0052CC] hover:bg-[#d1e4ff]",
     outline:
       "border-2 border-[#0052CC] text-[#0052CC] bg-transparent hover:bg-[#f0f7ff]",

@@ -2,6 +2,7 @@
 
 import { cn } from "@/utils/cn"
 import { usePathname } from "next/navigation"
+import Link from "next/link"
 
 export default function DashboardTabs() {
   const pathname = usePathname()
@@ -12,19 +13,19 @@ export default function DashboardTabs() {
   const inActiveStyle = "text-gray-400"
 
   return (
-    <nav className="flex">
+    <nav className="md:flex">
       {/* Tabs */}
-      <div className={cn(baseStyles, pathname === '/dashboard' ? activeStyle : inActiveStyle)}>
+      <Link href="/dashboard" className={cn(baseStyles, pathname === '/dashboard' ? activeStyle : inActiveStyle)}>
         Dashboard
-      </div>
+      </Link>
 
-      <div className={cn(baseStyles, pathname === '/dashboard/daftar-kursus' ? activeStyle : inActiveStyle)}>
+      <Link href="/courses" className={cn(baseStyles, pathname === '/courses' ? activeStyle : inActiveStyle)}>
         Daftar Kursus
-      </div>
+      </Link>
 
-      <div className={cn(baseStyles, pathname === '/dashboard/profile-saya' ? activeStyle : inActiveStyle)}>
+      <Link href="/profile" className={cn(baseStyles, pathname === '/profile' ? activeStyle : inActiveStyle)}>
         Profile Saya
-      </div>
+      </Link>
     </nav>
   )
 }
