@@ -1,8 +1,10 @@
 import CourseCard from "@/components/ui/CourseCard";
 import StatsCard from "@/components/ui/StatsCard";
-import Image from "next/image";
+import { myCoursesRequest } from "@/services/courses-service";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const { data } = await myCoursesRequest();
+
   return (
     <>
       <div className="space-y-5 mb-8">
@@ -11,7 +13,7 @@ export default function DashboardPage() {
           <StatsCard
             imageUrl="/icons/icon-courses-taken.png"
             altText="course-taken"
-            value="100"
+            value={data.stats.total}
             title="Kursus diikuti"
             type="taken"
           />

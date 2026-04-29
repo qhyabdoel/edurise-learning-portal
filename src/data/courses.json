@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Full Stack JavaScript / Node.js",
+    "category": "Programming",
+    "progress": 30,
+    "progressText": "3. Pengenalan algoritma"
+  },
+  {
+    "name": "Android Mobile Programming",
+    "category": "Programming",
+    "progress": 0,
+    "progressText": "1. Pengenalan android studio"
+  },
+  {
+    "name": "Digital Marketing",
+    "category": "Marketing",
+    "progress": 75,
+    "progressText": "5. Teknik Membuat Iklan"
+  },
+  {
+    "name": "Teknik Animasi 2D & 3D",
+    "category": "Multimedia",
+    "progress": 100,
+    "progressText": "12. Texturing 3D"
+  }
+]
