@@ -7,7 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
 }
 
-export default function Button({
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   className,
   variant = "primary",
   size = "md",
@@ -15,7 +15,7 @@ export default function Button({
   children,
   disabled,
   ...props
-}: ButtonProps) {
+}, ref) => {
   const baseStyles =
     "w-full rounded-lg font-medium transition-all focus:outline-none disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
 
@@ -36,6 +36,7 @@ export default function Button({
 
   return (
     <button
+      ref={ref}
       className={cn(
         baseStyles,
         variants[variant],
@@ -48,4 +49,6 @@ export default function Button({
       {children}
     </button>
   );
-}
+})
+
+export default Button

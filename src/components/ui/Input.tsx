@@ -5,20 +5,17 @@ import { Eye, EyeOff } from "lucide-react";
 import React from "react";
 import { useState } from "react";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode
-  disabled?: boolean
-  type?: string
-  placeholder?: string
   isPassword?: boolean
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ icon, disabled, type, placeholder, isPassword, ...props }, ref) => {
+  ({ icon, isPassword, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(false)
 
     const baseStyles = cn(
-      "w-full py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all text-gray-500"
+      "w-full py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all text-gray-700"
     )
 
     return (
@@ -29,9 +26,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
         <input
-          disabled={disabled}
-          type={isPassword ? (showPassword ? 'text' : 'password') : (type ?? 'text')}
-          placeholder={placeholder}
+          ref={ref}
+          {...props}
+          type={isPassword ? (showPassword ? 'text' : 'password') : (props.type ?? 'text')}
           className={cn(baseStyles, icon ? "pl-10 pr-4" : "px-4")}
         />
         {isPassword && (

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function proxy(request: NextRequest) {
-  const token = request.cookies.get("auth-token");
+  const token = request.cookies.get("token");
   const pathname = request.nextUrl;
 
   // if no token and not on login page, redirect to login
