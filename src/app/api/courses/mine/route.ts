@@ -1,18 +1,18 @@
 import { NextResponse } from "next/server";
-import courses from "@/data/courses.json"
+import courses from "@/data/courses.json";
 
 export async function GET() {
   const data = {
     stats: {
-      "total": 3,
-      "active": 2,
-      "done": 1
+      total: 3,
+      active: 2,
+      done: 1,
     },
-    "data": {
-      "mine": courses.slice(0, 3),
-      recommendation: courses
-    }
-  }
+    data: {
+      mine: courses.slice(0, 3),
+      recommendation: courses,
+    },
+  };
 
   // Simulate network latency
   await new Promise((resolve) => setTimeout(resolve, 15000));

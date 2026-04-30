@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import CourseCard from "@/components/ui/CourseCard";
 import Input from "@/components/ui/Input";
-import FilterDropdown from "./FilterDropdown";
+import FilterDropdown from "./components/FilterDropdown";
 
 export default function CoursesPage() {
   return (

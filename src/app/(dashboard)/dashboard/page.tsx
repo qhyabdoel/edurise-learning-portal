@@ -1,37 +1,15 @@
 import CourseCard from "@/components/ui/CourseCard";
-import StatsCard from "@/components/ui/StatsCard";
-import { myCoursesRequest } from "@/services/courses-service";
+import StatsContent from "./components/StatsContent";
+import { Suspense } from "react";
 
-export default async function DashboardPage() {
-  const { data } = await myCoursesRequest();
-
+export default function DashboardPage() {
   return (
     <>
       <div className="space-y-5 mb-8">
         <h1 className="text-2xl font-semibold">Dashboard</h1>
-        <div className="md:flex gap-6">
-          <StatsCard
-            imageUrl="/icons/icon-courses-taken.png"
-            altText="course-taken"
-            value={data.stats.total}
-            title="Kursus diikuti"
-            type="taken"
-          />
-          <StatsCard
-            imageUrl="/icons/icon-courses-active.png"
-            altText="course-taken"
-            value="100"
-            title="Kursus aktif"
-            type="active"
-          />
-          <StatsCard
-            imageUrl="/icons/icon-courses-done.png"
-            altText="course-taken"
-            value="100"
-            title="Kursus selesai"
-            type="done"
-          />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <StatsContent />
+        </Suspense>
       </div>
 
       <div className="space-y-5 mb-8">
@@ -41,7 +19,7 @@ export default async function DashboardPage() {
           <CourseCard />
           <CourseCard />
         </div>
-      </div >
+      </div>
 
       <div className="space-y-5 mb-8">
         <h1 className="text-2xl font-semibold">Rekomendasi Kursus</h1>
@@ -51,7 +29,7 @@ export default async function DashboardPage() {
           <CourseCard />
           <CourseCard />
         </div>
-      </div >
+      </div>
     </>
-  )
+  );
 }
