@@ -1,7 +1,15 @@
+import { cn } from "@/utils/cn"
 import Button from "./Button"
 import { Download } from "lucide-react"
 
-export default function CourseCard() {
+interface CourseCardProps {
+  name: string
+  category: string
+  progress: number
+  progressText: string
+}
+
+export default function CourseCard({ name, category, progress, progressText }: CourseCardProps) {
   return (
     <div className="shadow-sm shadow-black/20 rounded">
       <div>
@@ -15,22 +23,25 @@ export default function CourseCard() {
         />
       </div>
       <div className="p-4">
-        <div className="rounded-full bg-blue-100 px-3 py-0.5 text-xs text-blue-500 w-fit mb-3">Desain</div>
-        <p className="text-sm mb-1">Belajar coding dengan javascript</p>
-        <p className="mb-3">3. Belajar variable</p>
+        <div className="rounded-full bg-blue-100 px-3 py-0.5 text-xs text-blue-500 w-fit mb-3">{category}</div>
+        <p className="text-sm mb-1">{name}</p>
+        <p className="mb-3">{progressText}</p>
 
         {/* Progres Bar */}
         <div className="flex items-center gap-2 mb-3">
           <div className="w-full h-2 bg-blue-200 rounded-full">
-            <div className="w-3/4 h-2 bg-blue-500 rounded-full"></div>
+            <div
+              className={cn("h-2 rounded-full", progress !== 100 ? 'bg-blue-500' : 'bg-green-500')}
+              style={{ width: `${progress}%` }}
+            ></div>
           </div>
-          <p className="text-xs text-blue-500">100%</p>
+          <p className={cn("text-xs", progress !== 100 ? 'text-blue-500' : 'text-green-500')}>{progress}%</p>
         </div>
 
         {/* Actions */}
         <div className="space-y-2">
           <Button size="sm">Lanjutkan Kursus</Button>
-          <Button variant="secondary" size="sm">
+          <Button variant="secondary" size="sm" disabled={progress !== 100}>
             <span className="flex items-center justify-center gap-2">
               <Download size={14} /> Unduh Sertifikat
             </span>

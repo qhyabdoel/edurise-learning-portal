@@ -6,21 +6,81 @@
     "progressText": "3. Pengenalan algoritma"
   },
   {
+    "name": "Digital Marketing",
+    "category": "Marketing",
+    "progress": 100,
+    "progressText": "5. Teknik Membuat Iklan"
+  },
+  {
     "name": "Android Mobile Programming",
     "category": "Programming",
     "progress": 0,
     "progressText": "1. Pengenalan android studio"
   },
   {
-    "name": "Digital Marketing",
-    "category": "Marketing",
-    "progress": 75,
-    "progressText": "5. Teknik Membuat Iklan"
-  },
-  {
     "name": "Teknik Animasi 2D & 3D",
     "category": "Multimedia",
     "progress": 100,
     "progressText": "12. Texturing 3D"
+  },
+  {
+    "name": "Advanced Data Science",
+    "category": "Data",
+    "progress": 100,
+    "progressText": "3. Analisis Data Statistik"
+  },
+  {
+    "name": "Advanced UI/UX Design",
+    "category": "Design",
+    "progress": 40,
+    "progressText": "2. Prototyping Produk Digital"
+  },
+  {
+    "name": "Digital Marketing",
+    "category": "Marketing",
+    "progress": 60,
+    "progressText": "5. Teknik Membuat Iklan"
+  },
+  {
+    "name": "Java Programming",
+    "category": "Programming",
+    "progress": 0,
+    "progressText": "1. Pengenalan Java"
+  },
+  {
+    "name": "Laravel E-Commerce",
+    "category": "Programming",
+    "progress": 0,
+    "progressText": "1. Pengenalan Laravel"
+  },
+  {
+    "name": "Digital Marketing",
+    "category": "Marketing",
+    "progress": 40,
+    "progressText": "5. Teknik Membuat Iklan"
+  },
+  {
+    "name": "Android Mobile Programming",
+    "category": "Data",
+    "progress": 0,
+    "progressText": "1. Pengenalan Android Studio"
+  },
+  {
+    "name": "Deep Learning",
+    "category": "Data",
+    "progress": 0,
+    "progressText": "1. Pengenalan Deep Learning"
+  },
+  {
+    "name": "Cyber Security",
+    "category": "Network",
+    "progress": 100,
+    "progressText": "12. Pengamanan Jaringan"
+  },
+  {
+    "name": "Jaringan Komputer",
+    "category": "Network",
+    "progress": 50,
+    "progressText": "2. Konsep Jaringan Komputer"
   }
 ]

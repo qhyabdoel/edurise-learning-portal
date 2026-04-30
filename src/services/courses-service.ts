@@ -1,13 +1,10 @@
-import { cacheLife } from "next/cache";
+const BASE_URL = 'http://localhost:3000';
 
 export const myCoursesRequest = async () => {
-  "use cache";
-
-  cacheLife("seconds");
-
-  const response = await fetch('http://api.example.com/courses/mine', {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
+  const response = await fetch(`${BASE_URL}/api/courses/mine`, {
+    next: {
+      // revalidate: 60
+    }
   });
 
   const data = await response.json();
