@@ -3,7 +3,7 @@ import { cacheLife } from "next/cache";
 export const myCoursesRequest = async () => {
   "use cache";
 
-  cacheLife("minutes");
+  cacheLife("seconds");
 
   const response = await fetch('http://api.example.com/courses/mine', {
     method: "GET",

@@ -1,7 +1,7 @@
 import { LoginForm } from "@/types";
 
 export const loginRequest = async (credentials: LoginForm) => {
-  const response = await fetch('http://api.example.com/auth/login', {
+  const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
