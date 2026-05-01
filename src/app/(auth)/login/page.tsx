@@ -10,9 +10,9 @@ import { loginRequest } from "@/services/auth-service";
 import { LoginForm } from "@/types";
 import { useAuthStore } from "@/store/auth-store";
 import { X } from "lucide-react";
+import ErrorAlert from "@/components/ui/alerts/ErrorAlert";
 
 const LoginPage = () => {
-  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<LoginForm>()
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
@@ -22,8 +22,6 @@ const LoginPage = () => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const onSubmit = async (data: LoginForm) => {
-    console.log({ data });
-    setLoading(true);
     try {
       if (!data.email) {
         setEmailError("Email is required");
@@ -39,13 +37,10 @@ const LoginPage = () => {
         return;
       }
       const res = await loginRequest(data);
-      console.log({ res })
       setUser(res.data);
       router.push('/dashboard');
     } catch (error: any) {
       setLoginError(error.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -64,13 +59,8 @@ const LoginPage = () => {
 
       {/* Login Error Message */}
       {loginError && (
-        <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 flex gap-2" role="alert">
-          <div className="flex-1">
-            {loginError}
-          </div>
-          <button onClick={() => setLoginError("")} className="cursor-pointer">
-            <X size={20} />
-          </button>
+        <div className="mb-4">
+          <ErrorAlert message={loginError} setErrored={setLoginError} />
         </div>
       )}
 
@@ -106,8 +96,8 @@ const LoginPage = () => {
         </div>
 
         {/* Submit */}
-        <Button disabled={loading}>
-          {loading ? (
+        <Button disabled={isSubmitting}>
+          {isSubmitting ? (
             <span className="flex items-center justify-center gap-2">
               <Loader size={20} /> Harap Tunggu ...
             </span>

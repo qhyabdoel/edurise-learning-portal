@@ -7,10 +7,10 @@ import { useState } from "react";
 import Checkbox from "@/components/ui/Checkbox";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
+import EmailNotifSettings from "./components/EmailNotifSettings";
+import WhatsappNotifSettings from "./components/WhatsappNotifSettings";
 
 export default function ProfilePage() {
-  const [notificationEmail, setNotificationEmail] = useState(false);
-
   return (
     <>
       <div className="space-y-5 mb-20">
@@ -34,7 +34,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className="space-y-5 mb-20">
+      <div className="space-y-8 mb-20 w-1/2">
         <h1 className="text-2xl font-semibold">Ubah Password</h1>
         <PasswordForm />
       </div>
@@ -42,61 +42,11 @@ export default function ProfilePage() {
       <div className="flex gap-12 mb-20">
         <div className="space-y-6 flex-1">
           <h1 className="text-2xl font-semibold">Pengaturan pemberitahuan email</h1>
-          <div className="space-y-6">
-            <div className="flex gap-3">
-              <div>
-                <Switch
-                  checked={notificationEmail}
-                  onChange={() => setNotificationEmail(!notificationEmail)}
-                  disabled={false}
-                />
-              </div>
-              <p className="text-blue-500 text-lg">Aktifkan pemberitahuan email</p>
-            </div>
-            <div className="space-y-4">
-              <div className="flex gap-3">
-                <Checkbox />
-                <p>Laporan belajar kursus per minggu</p>
-              </div>
-              <div className="flex gap-3">
-                <Checkbox />
-                <p>Pencapaian sertifikan</p>
-              </div>
-              <div className="flex gap-3">
-                <Checkbox />
-                <p>Rekomendasi kursus terbaru</p>
-              </div>
-            </div>
-          </div>
+          <EmailNotifSettings />
         </div>
         <div className="space-y-5 flex-1">
           <h1 className="text-2xl font-semibold">Pengaturan pemberitahuan whatsapp</h1>
-          <div className="space-y-6">
-            <div className="flex gap-3">
-              <div>
-                <Switch
-                  checked={notificationEmail}
-                  onChange={() => setNotificationEmail(!notificationEmail)}
-                  disabled={false}
-                />
-              </div>
-              <p className="text-blue-500 text-lg">Aktifkan pemberitahuan email</p>
-            </div>
-            <div className="space-y-4">
-              <div className="flex gap-3">
-                <Checkbox />
-                <p>Laporan belajar kursus per minggu</p>
-              </div>
-              <div className="flex gap-3">
-                <Checkbox />
-                <p>Pencapaian sertifikan</p>
-              </div>
-              <div className="flex gap-3">
-                <Checkbox />
-                <p>Rekomendasi kursus terbaru</p>
-              </div>
-            </div>
-          </div>
+          <WhatsappNotifSettings />
         </div>
       </div>
     </>
