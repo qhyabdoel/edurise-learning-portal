@@ -2,21 +2,14 @@
 
 import Input from "@/components/ui/Input";
 import Image from "next/image";
-import Button from "@/components/ui/Button";
 import { Switch } from "@/components/ui/Switch";
 import { useState } from "react";
 import Checkbox from "@/components/ui/Checkbox";
-
-const InputGroup = ({ label }: { label: string }) => (
-  <div>
-    <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
-    <Input />
-  </div>
-)
+import ProfileForm from "./components/ProfileForm";
+import PasswordForm from "./components/PasswordForm";
 
 export default function ProfilePage() {
   const [notificationEmail, setNotificationEmail] = useState(false);
-  const [notificationWhatsapp, setNotificationWhatsapp] = useState(false);
 
   return (
     <>
@@ -35,33 +28,17 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="flex-1 space-y-4">
-              <div className="flex gap-4">
-                <div className="w-1/2">
-                  <InputGroup label="Nama depan" />
-                </div>
-                <div className="w-1/2">
-                  <InputGroup label="Nama belakang" />
-                </div>
-              </div>
-              <div>
-                <InputGroup label="User" />
-              </div>
-              <div>
-                <InputGroup label="Email" />
-              </div>
-              <div>
-                <InputGroup label="Nomor whatsapp" />
-              </div>
-              <div>
-                <InputGroup label="Jabatan" />
-              </div>
-              <div className="mt-8 w-40">
-                <Button>Simpan</Button>
-              </div>
+              <ProfileForm />
             </div>
           </div>
         </div>
       </div>
+
+      <div className="space-y-5 mb-20">
+        <h1 className="text-2xl font-semibold">Ubah Password</h1>
+        <PasswordForm />
+      </div>
+
       <div className="flex gap-12 mb-20">
         <div className="space-y-6 flex-1">
           <h1 className="text-2xl font-semibold">Pengaturan pemberitahuan email</h1>

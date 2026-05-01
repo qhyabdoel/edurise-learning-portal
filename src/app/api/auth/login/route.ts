@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
-
-const EMAIL_ADDRESS = 'admin@example.com'
-const PASSWORD = 'password123'
+import { mockUser } from '@/app/api/users/route';
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -11,12 +9,13 @@ export async function POST(request: Request) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   // 2. Mock Validation
-  if (email === EMAIL_ADDRESS && password === PASSWORD) {
+  if (email === mockUser.email && password === mockUser.password) {
     const response = NextResponse.json({
       data: {
-        name: 'John Doe',
-        email: EMAIL_ADDRESS,
-        summary: 'Developer with a strong ability to design and build user-centric solutions'
+        name: mockUser.name,
+        email: mockUser.email,
+        summary: mockUser.summary,
+        whatsapp: mockUser.whatsapp
       }
     }, { status: 200 });
 

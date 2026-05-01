@@ -44,6 +44,7 @@ Pada aplikasi ini saya menggunakan pendekatan berikut:
 
 - **State Management**:
     - State lokal yang digunakan untuk menyimpan data yang diperlukan oleh komponen.
+    - Menggunakan `zustand` untuk menyimpan state global yang digunakan oleh komponen.
 
 - **Fetching Data**:
     - Menggunakan `fetch` dengan parameter bawaan Next.js sehinggga cachingnya otomatis.
