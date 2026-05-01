@@ -14,9 +14,9 @@ export async function POST(request: Request) {
   if (email === EMAIL_ADDRESS && password === PASSWORD) {
     const response = NextResponse.json({
       data: {
-        name: 'Kiki Abdulloh',
+        name: 'John Doe',
         email: EMAIL_ADDRESS,
-        summary: 'An enthusiast developer with ability to design with various tool'
+        summary: 'Developer with a strong ability to design and build user-centric solutions'
       }
     }, { status: 200 });
 

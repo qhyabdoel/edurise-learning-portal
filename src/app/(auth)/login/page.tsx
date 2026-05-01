@@ -39,6 +39,7 @@ const LoginPage = () => {
         return;
       }
       const res = await loginRequest(data);
+      console.log({ res })
       setUser(res.data);
       router.push('/dashboard');
     } catch (error: any) {
