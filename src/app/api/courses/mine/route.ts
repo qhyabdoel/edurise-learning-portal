@@ -17,5 +17,5 @@ export async function GET(request: Request) {
   // delay 5 seconds
   await new Promise((resolve) => setTimeout(resolve, 5000));
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ data }, { status: 200 });
 }

@@ -1,9 +1,11 @@
-import CourseCard from "@/components/ui/CourseCard";
 import StatsContent from "./components/StatsContent";
 import { Suspense } from "react";
 import StatsSkeleton from "./components/StatsSkeleton";
 import MyCourses from "./components/MyCourses";
 import MyCoursesSkeleton from "./components/MyCoursesSkeleton";
+import RecommendedCourses from "./components/RecommendedCourses";
+import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 export default function DashboardPage() {
   return (
@@ -24,17 +26,14 @@ export default function DashboardPage() {
 
       <div className="space-y-5 mb-8">
         <h1 className="text-2xl font-semibold">Rekomendasi Kursus</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <CourseCard
-              key={index}
-              name="Full Stack JavaScript / Node.js"
-              category="Programming"
-              progress={30}
-              progressText="3. Pengenalan algoritma"
-            />
-          ))}
-        </div>
+        <Suspense fallback={<MyCoursesSkeleton />}>
+          <RecommendedCourses />
+        </Suspense>
+        <Link href="/courses">
+          <Button className="w-full mt-4" variant="outline">
+            Lihat Lebih Banyak
+          </Button>
+        </Link>
       </div>
     </>
   );

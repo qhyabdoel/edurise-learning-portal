@@ -5,11 +5,12 @@ import { Download } from "lucide-react"
 interface CourseCardProps {
   name: string
   category: string
-  progress: number
+  type: 'mine' | 'all'
+  progress?: number
   progressText: string
 }
 
-export default function CourseCard({ name, category, progress, progressText }: CourseCardProps) {
+export default function CourseCard({ name, category, type, progress, progressText }: CourseCardProps) {
   return (
     <div className="shadow-sm shadow-black/20 rounded">
       <div>
@@ -28,26 +29,37 @@ export default function CourseCard({ name, category, progress, progressText }: C
         <p className="mb-3">{progressText}</p>
 
         {/* Progres Bar */}
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-full h-2 bg-blue-200 rounded-full">
-            <div
-              className={cn("h-2 rounded-full", progress !== 100 ? 'bg-blue-500' : 'bg-green-500')}
-              style={{ width: `${progress}%` }}
-            ></div>
+        {progress && (
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-full h-2 bg-blue-200 rounded-full">
+              <div
+                className={cn("h-2 rounded-full", progress !== 100 ? 'bg-blue-500' : 'bg-green-500')}
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+            <p className={cn("text-xs", progress !== 100 ? 'text-blue-500' : 'text-green-500')}>{progress}%</p>
           </div>
-          <p className={cn("text-xs", progress !== 100 ? 'text-blue-500' : 'text-green-500')}>{progress}%</p>
-        </div>
+        )}
 
         {/* Actions */}
         <div className="space-y-2">
-          <Button size="sm">Lanjutkan Kursus</Button>
-          <Button variant="secondary" size="sm" disabled={progress !== 100}>
-            <span className="flex items-center justify-center gap-2">
-              <Download size={14} /> Unduh Sertifikat
-            </span>
-          </Button>
+          {type === 'all' ? (
+            <>
+              <Button size="sm">Lihat Detail Kursus</Button>
+              <Button size="sm" variant="outline">Tambah Kursus</Button>
+            </>
+          ) : (
+            <>
+              <Button size="sm">Lanjutkan Kursus</Button>
+              <Button variant="secondary" size="sm" disabled={progress !== 100}>
+                <span className="flex items-center justify-center gap-2">
+                  <Download size={14} /> Unduh Sertifikat
+                </span>
+              </Button>
+            </>
+          )}
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }

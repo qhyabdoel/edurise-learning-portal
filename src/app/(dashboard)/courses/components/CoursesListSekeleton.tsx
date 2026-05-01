@@ -1,4 +1,4 @@
-export default function MyCoursesSkeleton() {
+export default function CoursesListSkeleton() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6">
       {Array.from({ length: 4 }).map((_, index) => (
@@ -16,14 +16,6 @@ export default function MyCoursesSkeleton() {
 
             {/* Progress Text Skeleton */}
             <div className="h-3 w-1/2 bg-gray-200 animate-pulse rounded"></div>
-
-            {/* Progress Bar Skeleton */}
-            <div className="space-y-2 pt-2">
-              <div className="flex items-center gap-2">
-                <div className="w-full h-2 bg-gray-200 rounded-full animate-pulse"></div>
-                <div className="h-2 w-8 bg-gray-200 rounded animate-pulse"></div>
-              </div>
-            </div>
 
             {/* Button Skeleton */}
             <div className="space-y-2 pt-1">

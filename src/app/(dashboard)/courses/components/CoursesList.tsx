@@ -1,19 +1,23 @@
 import CourseCard from "@/components/ui/CourseCard"
-import { myCoursesRequest } from "@/services/courses-service"
+import { allCoursesRequest } from "@/services/courses-service"
 
-export default async function MyCourses() {
-  const { data: { data } } = await myCoursesRequest()
+type Props = {
+  categories?: string;
+  search?: string;
+}
+
+export default async function CoursesList({ categories, search }: Props) {
+  const { data: { data } } = await allCoursesRequest({ categories, search })
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6">
-      {data.mine.map((course: any, index: number) => (
+      {data.map((course: any, index: number) => (
         <CourseCard
           key={index}
           name={course.name}
           category={course.category}
-          progress={course.progress}
+          type="all"
           progressText={course.progressText}
-          type="mine"
         />
       ))}
     </div>

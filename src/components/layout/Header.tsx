@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Header() {
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
@@ -6,20 +8,11 @@ export default function Header() {
           <h1 className="text-3xl font-bold text-blue-500">EduRise</h1>
           <nav>
             <ul className="flex gap-6">
-              <li>
-                <a href="#" className="text-gray-600 hover:text-blue-500 font-medium">
-                  Home
-                </a>
+              <li className="flex items-center">
+                <Image src="/icons/bell.png" alt="logo" width={24} height={24} />
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-blue-500 font-medium">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-blue-500 font-medium">
-                  Contact
-                </a>
+                <Image src="/images/avatar.png" alt="avatar" width={40} height={40} />
               </li>
             </ul>
           </nav>
