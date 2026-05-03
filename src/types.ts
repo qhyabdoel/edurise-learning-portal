@@ -24,3 +24,9 @@ export type ChangePasswordForm = {
   newPassword: string;
   confirmPassword: string;
 }
+
+export type EmailNotifSettings = {
+  weeklyReport: boolean;
+  certificate: boolean;
+  recommendation: boolean;
+}

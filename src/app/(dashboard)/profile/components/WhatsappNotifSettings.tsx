@@ -2,10 +2,20 @@
 
 import { Switch } from "@/components/ui/Switch"
 import Checkbox from "@/components/ui/Checkbox"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { cn } from "@/utils/cn"
 
 export default function WhatsappNotifSettings() {
   const [notificationWhatsapp, setNotificationWhatsapp] = useState(false);
+  const [messageWhatsapp, setMessageWhatsapp] = useState(false);
+  const handleMessageWhatsapp = () => setMessageWhatsapp(!messageWhatsapp)
+
+  useEffect(() => {
+    if (!notificationWhatsapp) {
+      setMessageWhatsapp(false)
+    }
+  }, [notificationWhatsapp])
+
   return (
     <div className="space-y-6">
       <div className="flex gap-3">
@@ -16,20 +26,20 @@ export default function WhatsappNotifSettings() {
             disabled={false}
           />
         </div>
-        <p className="text-blue-500 text-lg">Aktifkan pemberitahuan email</p>
+        <p className={cn("text-lg", !notificationWhatsapp ? "text-gray-400" : "text-blue-500")}>
+          Pemberitahuan whatsapp aktif
+        </p>
       </div>
       <div className="space-y-4">
         <div className="flex gap-3">
-          <Checkbox />
-          <p>Laporan belajar kursus per minggu</p>
-        </div>
-        <div className="flex gap-3">
-          <Checkbox />
-          <p>Pencapaian sertifikan</p>
-        </div>
-        <div className="flex gap-3">
-          <Checkbox />
-          <p>Rekomendasi kursus terbaru</p>
+          <Checkbox
+            checked={messageWhatsapp}
+            onChange={handleMessageWhatsapp}
+            disabled={!notificationWhatsapp}
+          />
+          <p className={cn(!notificationWhatsapp ? "text-gray-400" : messageWhatsapp ? "text-blue-500" : "")}>
+            Kirim pesan motivasi lewat whatsapp
+          </p>
         </div>
       </div>
     </div>

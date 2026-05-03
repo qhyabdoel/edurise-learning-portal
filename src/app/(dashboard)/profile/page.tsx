@@ -1,16 +1,13 @@
-"use client";
-
-import Input from "@/components/ui/Input";
 import Image from "next/image";
-import { Switch } from "@/components/ui/Switch";
-import { useState } from "react";
-import Checkbox from "@/components/ui/Checkbox";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
-import EmailNotifSettings from "./components/EmailNotifSettings";
 import WhatsappNotifSettings from "./components/WhatsappNotifSettings";
+import { getEmailNotifRequest } from "@/services/notif-service";
+import EmailNotifSettingsForm from "./components/EmailNotifSettings";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const { data: emailNotifData } = await getEmailNotifRequest();
+
   return (
     <>
       <div className="space-y-5 mb-20">
@@ -42,7 +39,7 @@ export default function ProfilePage() {
       <div className="flex gap-12 mb-20">
         <div className="space-y-6 flex-1">
           <h1 className="text-2xl font-semibold">Pengaturan pemberitahuan email</h1>
-          <EmailNotifSettings />
+          <EmailNotifSettingsForm initialNotif={emailNotifData} />
         </div>
         <div className="space-y-5 flex-1">
           <h1 className="text-2xl font-semibold">Pengaturan pemberitahuan whatsapp</h1>
