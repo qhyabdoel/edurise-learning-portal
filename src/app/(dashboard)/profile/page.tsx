@@ -1,12 +1,13 @@
 import Image from "next/image";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
-import WhatsappNotifSettings from "./components/WhatsappNotifSettings";
-import { getEmailNotifRequest } from "@/services/notif-service";
+import WhatsappNotifSettingsForm from "./components/WhatsappNotifSettings";
+import { getEmailNotifRequest, getWhatsappNotifRequest } from "@/services/notif-service";
 import EmailNotifSettingsForm from "./components/EmailNotifSettings";
 
 export default async function ProfilePage() {
   const { data: emailNotifData } = await getEmailNotifRequest();
+  const { data: whatsappNotifData } = await getWhatsappNotifRequest();
 
   return (
     <>
@@ -31,19 +32,19 @@ export default async function ProfilePage() {
         </div>
       </div>
 
-      <div className="space-y-8 mb-20 w-1/2">
+      <div className="space-y-8 mb-20 md:w-1/2">
         <h1 className="text-2xl font-semibold">Ubah Password</h1>
         <PasswordForm />
       </div>
 
-      <div className="flex gap-12 mb-20">
+      <div className="md:flex gap-12 mb-20">
         <div className="space-y-6 flex-1">
           <h1 className="text-2xl font-semibold">Pengaturan pemberitahuan email</h1>
           <EmailNotifSettingsForm initialNotif={emailNotifData} />
         </div>
         <div className="space-y-5 flex-1">
           <h1 className="text-2xl font-semibold">Pengaturan pemberitahuan whatsapp</h1>
-          <WhatsappNotifSettings />
+          <WhatsappNotifSettingsForm initialNotif={whatsappNotifData} />
         </div>
       </div>
     </>

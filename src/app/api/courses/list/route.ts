@@ -26,8 +26,8 @@ export async function GET(request: Request) {
         data: filteredCourses,
     };
 
-    // delay 5 seconds
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // delay
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     return NextResponse.json({ data }, { status: 200 });
 }

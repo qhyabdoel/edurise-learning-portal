@@ -9,23 +9,29 @@ export default function DashboardTabs() {
 
   const baseStyles = "text-center px-12 py-4 cursor-pointer hover:text-gray-700"
 
-  const activeStyle = "border-b-2 border-blue-500 font-semibold"
+  const activeStyle = "md:border-b-2 border-blue-500 font-semibold"
   const inActiveStyle = "text-gray-400"
 
   return (
     <nav className="md:flex">
       {/* Tabs */}
-      <Link href="/dashboard" className={cn(baseStyles, pathname === '/dashboard' ? activeStyle : inActiveStyle)}>
-        Dashboard
-      </Link>
+      <div>
+        <Link href="/dashboard" className={cn(baseStyles, pathname === '/dashboard' ? activeStyle : inActiveStyle)}>
+          Dashboard
+        </Link>
+      </div>
 
-      <Link href="/courses" className={cn(baseStyles, pathname === '/courses' ? activeStyle : inActiveStyle)}>
-        Daftar Kursus
-      </Link>
+      <div>
+        <Link href="/courses" className={cn(baseStyles, pathname === '/courses' ? activeStyle : inActiveStyle)}>
+          Daftar Kursus
+        </Link>
+      </div>
 
-      <Link href="/profile" className={cn(baseStyles, pathname === '/profile' ? activeStyle : inActiveStyle)}>
-        Profile Saya
-      </Link>
+      <div>
+        <Link href="/profile" className={cn(baseStyles, pathname === '/profile' ? activeStyle : inActiveStyle)}>
+          Profile Saya
+        </Link>
+      </div>
     </nav>
   )
 }

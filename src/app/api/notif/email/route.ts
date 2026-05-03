@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 let mockEmailNotif = {
+  enabled: false,
   weeklyReport: false,
   certificate: false,
   recommendation: false

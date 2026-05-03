@@ -26,7 +26,13 @@ export type ChangePasswordForm = {
 }
 
 export type EmailNotifSettings = {
+  enabled: boolean;
   weeklyReport: boolean;
   certificate: boolean;
   recommendation: boolean;
+}
+
+export type WhatsappNotifSettings = {
+  enabled: boolean;
+  motivation: boolean;
 }
