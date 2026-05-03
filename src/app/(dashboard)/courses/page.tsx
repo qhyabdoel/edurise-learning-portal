@@ -31,7 +31,7 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
             </div>
           </div>
 
-          <Suspense fallback={<CoursesListSekeleton />}>
+          <Suspense key={`${categories}-${searchInput}`} fallback={<CoursesListSekeleton />}>
             <CoursesList categories={categories} search={searchInput} />
           </Suspense>
         </div>

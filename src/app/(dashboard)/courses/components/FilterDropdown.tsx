@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useTransition } from "react";
 import { Filter } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
@@ -37,16 +37,14 @@ export default function FilterDropdown({ search, categories }: { search?: string
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedCategoriesCount, setSelectedCategoriesCount] = useState<number>(0);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   useEffect(() => {
-    if (categories) {
-      setSelectedCategories(categories.split(","));
-      setSelectedCategoriesCount(categories.split(",").length);
-    } else {
-      setSelectedCategories([]);
-      setSelectedCategoriesCount(0);
+    const currentCategories = categories ? categories.split(",") : [];
+    // Only update if the categories actually changed to avoid unnecessary re-renders
+    if (JSON.stringify(currentCategories) !== JSON.stringify(selectedCategories)) {
+      setSelectedCategories(currentCategories);
     }
   }, [categories])
 
@@ -71,7 +69,9 @@ export default function FilterDropdown({ search, categories }: { search?: string
   }, []);
 
   const handleApplyFilter = () => {
-    router.replace(`/courses?categories=${selectedCategories.join(",")}&search=${sanitizeUrl(search)}`)
+    startTransition(() => {
+      router.replace(`/courses?categories=${selectedCategories.join(",")}&search=${sanitizeUrl(search)}`, { scroll: false })
+    })
   }
 
   return (
@@ -86,7 +86,7 @@ export default function FilterDropdown({ search, categories }: { search?: string
         </div>
         <div className="flex-1 text-left">Filter</div>
         <div className="rounded-full px-2 py-0.5 text-sm bg-blue-100 text-blue-600">
-          {selectedCategoriesCount}
+          {selectedCategories.length}
         </div>
       </button>
 
@@ -101,16 +101,16 @@ export default function FilterDropdown({ search, categories }: { search?: string
                 onChange={(checked) => {
                   if (checked) {
                     setSelectedCategories([...selectedCategories, category]);
-                    setSelectedCategoriesCount(selectedCategoriesCount + 1);
                   } else {
                     setSelectedCategories(selectedCategories.filter((c) => c !== category));
-                    setSelectedCategoriesCount(selectedCategoriesCount - 1);
                   }
                 }}
               />
             ))}
             <div className="mt-4" onClick={() => setOpen(false)}>
-              <Button size="sm" onClick={handleApplyFilter}>Apply</Button>
+              <Button size="sm" onClick={handleApplyFilter} disabled={isPending}>
+                {isPending ? "Applying..." : "Apply"}
+              </Button>
             </div>
           </div>
         </div>

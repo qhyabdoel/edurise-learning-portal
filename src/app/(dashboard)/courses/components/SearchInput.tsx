@@ -2,11 +2,14 @@
 
 import Input from "@/components/ui/Input";
 import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
 
 export default function SearchInput({ categories, search }: { categories?: string, search?: string }) {
   const [searchValue, setSearchValue] = useState(search);
   const [debounceSearch, setDebounceSearch] = useState(search);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,12 +21,14 @@ export default function SearchInput({ categories, search }: { categories?: strin
   useEffect(() => {
     if (debounceSearch === search) return;
 
-    if (debounceSearch) {
-      window.location.href = `/courses?categories=${categories}&search=${debounceSearch}`
-    } else {
-      window.location.href = `/courses?categories=${categories}`
-    }
-  }, [debounceSearch])
+    startTransition(() => {
+      if (debounceSearch) {
+        router.replace(`/courses?categories=${categories ?? ""}&search=${debounceSearch}`, { scroll: false })
+      } else {
+        router.replace(`/courses?categories=${categories ?? ""}`, { scroll: false })
+      }
+    });
+  }, [debounceSearch, categories, router, search])
 
   useEffect(() => {
     setSearchValue(search);
